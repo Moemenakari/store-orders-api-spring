@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cedar Market · Store Orders API</title>
+  <link rel="icon" href="data:,">
+  <style>
+    body { margin: 0; background: #f5f3ee; color: #1f2a24; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 16px; }
+    h1 { margin: 0 0 4px; color: #24583f; }
+    p { margin: 0 0 20px; color: #6b756f; }
+    .card { background: #fff; border: 1px solid #e2ded4; border-radius: 10px; padding: 8px 16px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 9px 8px; border-bottom: 1px solid #e2ded4; }
+    tr:last-child td { border-bottom: 0; }
+    code { font: 14px ui-monospace, Menlo, Consolas, monospace; }
+    .method { font-weight: 700; color: #24583f; white-space: nowrap; }
+    pre { background: #fff; border: 1px solid #e2ded4; border-radius: 10px; padding: 12px 16px; overflow-x: auto; min-height: 3em; }
+    h2 { font-size: 18px; margin: 28px 0 8px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Store Orders API</h1>
+    <p>REST API for products and orders — Java 21, Spring Boot 3, JPA, H2.</p>
+
+    <div class="card">
+      <table>
+        <tr><td class="method">GET</td><td><a href="api/products"><code>/api/products</code></a></td><td>List products (<code>?category=</code>)</td></tr>
+        <tr><td class="method">GET</td><td><a href="api/products/1"><code>/api/products/{id}</code></a></td><td>Get one product</td></tr>
+        <tr><td class="method">POST</td><td><code>/api/products</code></td><td>Create a product</td></tr>
+        <tr><td class="method">PUT</td><td><code>/api/products/{id}</code></td><td>Update a product</td></tr>
+        <tr><td class="method">DELETE</td><td><code>/api/products/{id}</code></td><td>Delete a product</td></tr>
+        <tr><td class="method">GET</td><td><a href="api/orders"><code>/api/orders</code></a></td><td>List orders (<code>?status=</code>)</td></tr>
+        <tr><td class="method">POST</td><td><code>/api/orders</code></td><td>Place an order</td></tr>
+        <tr><td class="method">PATCH</td><td><code>/api/orders/{id}/status</code></td><td>Change order status</td></tr>
+      </table>
+    </div>
+
+    <h2>Live response: <code>GET /api/products</code></h2>
+    <pre id="output">Loading…</pre>
+  </main>
+  <script>
+    fetch('api/products')
+      .then((response) => response.json())
+      .then((products) => { document.getElementById('output').textContent = JSON.stringify(products, null, 2); })
+      .catch(() => { document.getElementById('output').textContent = 'Could not load products.'; });
+  </script>
+</body>
+</html>
